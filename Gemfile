@@ -60,3 +60,5 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
 gem 'stimulus-rails'
+
+gem 'devise'
