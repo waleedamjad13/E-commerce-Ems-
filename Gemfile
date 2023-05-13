@@ -62,3 +62,5 @@ gem 'rubocop-rails', require: false
 gem 'stimulus-rails'
 
 gem 'devise'
+
+gem 'dotenv-rails'
