@@ -63,4 +63,4 @@ gem 'stimulus-rails'
 
 gem 'devise'
 
-gem 'dotenv-rails'
+gem "letter_opener", group: :development
