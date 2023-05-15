@@ -2,9 +2,9 @@
 
 # controller for methods that are used in all controllers
 class ApplicationController < ActionController::Base
+  include AuthorizeUser
+  
   protect_from_forgery with: :exception
-
-  include Pundit::Authorization
 
 
   before_action :configure_permitted_parameters, if: :devise_controller?
