@@ -16,7 +16,3 @@
  #signup-section.hidden {
   display: none;
 }
-#signup-errors {
-  color: red;
-  margin-bottom: 10px;
-}
