@@ -24,7 +24,7 @@
 <% end %>
 
 <%= link_to "New to EMS", "#", id: "signup-link" %>
-<div id="signup-section" class="hidden">
+<div id="signup-section" class="<%= params[:signup] != 'true' && 'hidden' %>">
   <%= render "users/registrations/new" %>
 </div>
 <!-- <%= render "users/shared/links" %> -->

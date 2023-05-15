@@ -1,0 +1,5 @@
+<% byebug %>
+let signupSection = document.querySelector('#signup-section')
+
+
+signupSection.innerHTML = "<%= j render 'users/registrations/new', resource: resource %> "

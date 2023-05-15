@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_with( model: resource, url: registration_path(resource_name), local: true, id: "signup-form", data: { controller: "signup-form" }, data: { target: "signup-form.form" }) do |f| %>
+<%= form_with( model: resource, url: registration_path(resource_name), remote: true, id: "signup-form", data: { controller: "signup-form" }, data: { target: "signup-form.form" }) do |f| %>
 
   <% if flash[:error_messages].present? %>
     <div class="error-messages">
@@ -9,6 +9,8 @@
       <% end %>
     </div>
   <% end %>
+
+  <% f.hidden_field :signup, value: true %>
 
   <div class="field">
     <%= f.label :firstname %><br />

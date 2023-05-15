@@ -15,11 +15,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.errors.any?
         clean_up_passwords resource
         set_minimum_password_length
-        
+
         flash[:error_messages] = resource.errors.full_messages
 
         # Redirect to the login page
-        redirect_to new_user_session_path and return
+        redirect_to new_user_session_path(signup: true) and return
       end
     end
   end

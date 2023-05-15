@@ -46,7 +46,6 @@ class ApplicationView
   # @param record [ActiveRecord::Model] Model
   #
 
-
   # Returns if the other view has the same model
   #
   # @return [Boolean]
