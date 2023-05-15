@@ -1,5 +1,6 @@
 
 Logged in as:<%= current_user&.email %>
+<% if policy(:home).index? %>
 
 <h1>Users</h1>
 
@@ -31,6 +32,8 @@ Logged in as:<%= current_user&.email %>
 </table>
 
 <br>
-
+<% else %>
+  <h2>User</h2>
+<% end %>
 
 <%= button_to "Logout", destroy_user_session_path, method: :delete %>
