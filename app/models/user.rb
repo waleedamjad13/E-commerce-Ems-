@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# model for user
 class User < ApplicationRecord
   PASSWORD_FORMAT = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"?$%^&.])\S{8,}\z/.freeze # rubocop:disable Layout/LineLength
 

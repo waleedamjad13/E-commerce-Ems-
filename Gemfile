@@ -63,3 +63,6 @@ gem 'stimulus-rails'
 gem 'devise'
 
 gem 'letter_opener', group: :development
+
+
+gem "pundit", "~> 2.3"

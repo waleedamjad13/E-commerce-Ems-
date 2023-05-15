@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# migration for creating user through devise
+#
 class DeviseCreateUsers < ActiveRecord::Migration[6.0]
-  def change
+  def change # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ''
@@ -28,7 +30,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
+      t.integer  :failed_attempts, default: 0, null: false
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
