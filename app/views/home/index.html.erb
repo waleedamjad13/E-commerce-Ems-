@@ -9,6 +9,7 @@ Logged in as:<%= current_user&.email %>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+      <th>Admin</th>
       <th>Confirmed</th>
       <th colspan="3"></th>
     </tr>
@@ -20,6 +21,7 @@ Logged in as:<%= current_user&.email %>
         <td><%= user.firstname %></td>
         <td><%= user.lastname %></td>
         <td><%= user.email %></td>
+        <td><%= user.admin %></td>
         <td><%= user.confirmed? %></td>
         <td><%= link_to 'Edit', edit_user_registration_path %></td>
       </tr>
