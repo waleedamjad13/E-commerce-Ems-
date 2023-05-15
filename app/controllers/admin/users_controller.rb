@@ -8,6 +8,11 @@ module Admin
 
     def index
       @pagy, @users = pagy(User.all, items: 6)
+
+      if params[:search].present?
+        result = SearchUsers.call(search_terms: params[:search])
+        @users = result.users if result.success?
+      end
     end
 
     def show; end
@@ -35,6 +40,8 @@ module Admin
         redirect_to root_path, alert: result.error
       end
     end
+
+
 
     private
 
