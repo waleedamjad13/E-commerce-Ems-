@@ -66,3 +66,5 @@ gem 'letter_opener', group: :development
 
 
 gem "pundit", "~> 2.3"
+
+gem 'pagy', '~> 6.0'

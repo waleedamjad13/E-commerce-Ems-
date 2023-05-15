@@ -3,11 +3,13 @@ module Admin
     before_action :set_user
 
     def index
-      @users = User.all
+      @pagy, @users = pagy(User.all, items: 6)
+
     end
 
     def show
       @user = User.find_by(id: params[:id])
+
     end
 
     def edit
