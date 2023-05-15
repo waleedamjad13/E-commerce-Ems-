@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
-# application controller for common logic
+# controller for methods that are used in all controllers
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  include Pundit::Authorization
+
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
