@@ -8,7 +8,10 @@ module Admin
 
     def index
       @pagy, @users = pagy(User.all, items: 6)
-      @users = User.search_by_name(params[:search])
+
+      if params[:search].present?
+        @users = @users.search_by_name(params[:search])
+      end
     end
 
     def show; end

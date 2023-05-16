@@ -24,7 +24,7 @@ class ApplicationView
   # model name in subclasses.
   #
   def initialize(model, current_user: nil, **_options)
-    @model = model
+    @model = modelcurrent_user
     @current_user = current_user
   end
 
