@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# concern for pundit authoriztaion
 module AuthorizeUser
   extend ActiveSupport::Concern
 

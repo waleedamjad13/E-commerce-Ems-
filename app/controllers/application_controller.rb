@@ -3,6 +3,6 @@
 # controller for methods that are used in all controllers
 class ApplicationController < ActionController::Base
   include AuthorizeUser
-  include Pagy::Backend
+  include PagyHelpers
   include AdminNamespace
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# concern for admin namespace
 module AdminNamespace
   extend ActiveSupport::Concern
 
