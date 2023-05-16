@@ -16,7 +16,4 @@ class User < ApplicationRecord
     with: PASSWORD_FORMAT
   }
 
-  def password_required?
-    false
-  end
 end

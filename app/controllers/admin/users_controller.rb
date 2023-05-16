@@ -28,9 +28,12 @@ module Admin
     end
 
     def destroy
-      @user = User.find(params[:id])
-      @user.destroy
-      redirect_to root_path, notice: "User is successfully deleted"
+      result = DestroyUser.call(id: params[:id])
+      if result.success?
+        redirect_to root_path, notice: result.notice
+      else
+        redirect_to root_path, alert: result.error
+      end
     end
 
     private
