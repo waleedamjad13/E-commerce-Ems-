@@ -69,3 +69,7 @@ gem "pundit", "~> 2.3"
 
 gem 'pagy', '~> 6.0'
 
+
+gem 'prawn'
+gem 'pdf-reader'
+

@@ -24,7 +24,7 @@ class ApplicationView
   # model name in subclasses.
   #
   def initialize(model, current_user: nil, **_options)
-    @model = modelcurrent_user
+    @model = model
     @current_user = current_user
   end
 
@@ -110,6 +110,5 @@ class ApplicationView
     include ActionView::Helpers::TextHelper
     include ActionView::Helpers::DateHelper
     include ApplicationHelper
-    include SanitizedTextHelper
   end
 end
