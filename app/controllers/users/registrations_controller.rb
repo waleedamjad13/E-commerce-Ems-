@@ -5,6 +5,7 @@ module Users
   # controller for handling registration process of users
   #
   class RegistrationsController < Devise::RegistrationsController
+    before_action :configure_permitted_parameters
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
 
@@ -68,5 +69,14 @@ module Users
     # def after_inactive_sign_up_path_for(resource)
     #   super(resource)
     # end
+
+    private
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up) do |u|
+        u.permit(:firstname, :lastname, :admin, :email, :password,
+          :password_confirmation)
+      end
+    end
   end
 end
