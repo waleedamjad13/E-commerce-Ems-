@@ -9,11 +9,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :confirmable
 
-
-
   validates :firstname, :lastname, presence: true
   validates :password, format: {
     with: PASSWORD_FORMAT
   }
-
 end
