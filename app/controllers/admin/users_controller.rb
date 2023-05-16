@@ -1,18 +1,18 @@
+# frozen_string_literal: true
+
 module Admin
+  # controller for users that are namespaced inside admin
+  #
   class UsersController < ApplicationController
-    before_action :set_user
+    before_action :set_user, only: %i[edit update show destroy]
 
     def index
-      @users = User.all
+      @pagy, @users = pagy(User.all, items: 6)
     end
 
-    def show
-      @user = User.find_by(id: params[:id])
-    end
+    def show;    end
 
-    def edit
-      @user = User.find(params[:id])
-    end
+    def edit;    end
 
     def update
       result = UpdateUser.call(
@@ -23,7 +23,7 @@ module Admin
       if result.success?
         redirect_to root_path, notice: 'User was successfully updated.'
       else
-        render :edit, notice: result.message
+        render :edit, alert: result.error
       end
     end
 
@@ -46,7 +46,7 @@ module Admin
 
     def set_user
       @user = User.find_by(id: params[:id])
-      @user ||= User.new
+      @user ||= User.new # rubocop:disable Naming/MemoizedInstanceVariableName
     end
   end
 end
