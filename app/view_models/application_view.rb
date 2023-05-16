@@ -110,6 +110,5 @@ class ApplicationView
     include ActionView::Helpers::TextHelper
     include ActionView::Helpers::DateHelper
     include ApplicationHelper
-    include SanitizedTextHelper
   end
 end

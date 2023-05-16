@@ -11,5 +11,9 @@ class User
         term: "%#{search_terms}%"
       )
     end
+
+    def non_admins
+      where('admin = ?', false)
+    end
   end
 end

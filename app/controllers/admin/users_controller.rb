@@ -7,10 +7,10 @@ module Admin
   # controller for users that are namespaced inside admin
   #
   class UsersController < ApplicationController
-    before_action :set_user, only: %i[edit update show destroy]
+    before_action :set_user
 
     def index
-      @pagy, @users = pagy(User.all, items: 6)
+      @pagy, @users = pagy(User.non_admins, items: 6)
 
       return unless params[:search].present? # rubocop:disable  Rails/Blank
 
@@ -36,6 +36,7 @@ module Admin
 
     def destroy
       result = DestroyUser.call(id: params[:id])
+
       if result.success?
         redirect_to root_path, notice: result.notice
       else
@@ -63,8 +64,9 @@ module Admin
 
     def set_user
       @user = User.find_by(id: params[:id])
-      @user ||= User.new # rubocop:disable Naming/MemoizedInstanceVariableName
-      # @user_view = UserView.new
+      @user ||= User.new
+
+      @user_view = UserView.new(@user, current_user: current_user)
     end
   end
 end
