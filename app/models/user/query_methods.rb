@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
 class User
+  #
+  # file for query methods for user model
+  #
   module QueryMethods
     def search_by_name(search_terms)
       where(

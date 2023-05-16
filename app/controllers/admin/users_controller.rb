@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'prawn'
+require 'pdf-reader'
+
 module Admin
   # controller for users that are namespaced inside admin
   #
@@ -9,9 +12,9 @@ module Admin
     def index
       @pagy, @users = pagy(User.all, items: 6)
 
-      if params[:search].present?
-        @users = @users.search_by_name(params[:search])
-      end
+      return unless params[:search].present? # rubocop:disable  Rails/Blank
+
+      @users = @users.search_by_name(params[:search])
     end
 
     def show; end
@@ -40,6 +43,16 @@ module Admin
       end
     end
 
+    def export
+      result = ExportUsers.call(search_terms: params[:search])
+
+      if result.success?
+        send_data result.csv_data, filename: result.filename
+      else
+        redirect_to root_path, alert: result.error
+      end
+    end
+
     private
 
     def user_params
@@ -51,6 +64,7 @@ module Admin
     def set_user
       @user = User.find_by(id: params[:id])
       @user ||= User.new # rubocop:disable Naming/MemoizedInstanceVariableName
+      # @user_view = UserView.new
     end
   end
 end
