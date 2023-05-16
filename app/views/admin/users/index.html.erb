@@ -3,6 +3,9 @@ Logged in as:<%= current_user&.email %>
 <% if policy(:users).index? %>
 
   <h1>Users</h1>
+  <%= render 'admin/users/search' %>
+
+
   <table>
     <thead>
       <tr>
