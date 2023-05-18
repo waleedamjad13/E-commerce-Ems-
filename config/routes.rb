@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
   root to: "products#index"
-  resources :products, only: [:index]
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
 
+  resources :products, only: [:index, :show]
 
   namespace :admin do
-    root to: 'admin/users#index'
-
     resources :products
     resources :users do
       collection do

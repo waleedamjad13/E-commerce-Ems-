@@ -5,5 +5,5 @@
 class ProductView < ApplicationView
   alias product model
 
-  delegate :title, :description, :price, :status, to: :product
+  delegate :title, :description, :price, :status, :header_image, :images, to: :product
 end

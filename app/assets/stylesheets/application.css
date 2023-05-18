@@ -56,3 +56,14 @@
 .ml-1 {
   margin-left: 1rem;
 }
+
+.product-image {
+  height: 200px; /* Adjust the height as desired */
+  width: auto; /* Adjust the width as desired */
+  object-fit: cover;
+}
+
+.product-image-header{
+  height: 300px;
+  object-fit: cover;
+}

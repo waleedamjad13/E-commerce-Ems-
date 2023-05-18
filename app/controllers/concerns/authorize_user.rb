@@ -10,12 +10,11 @@ module AuthorizeUser
     protect_from_forgery with: :exception
   end
 
-  private
 
-  def user_not_authorized(exception)
-    policy_name = exception.policy.class.to_s.underscore
-    flash[:error] =
-      t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
-    redirect_back(fallback_url: root_path)
+  private
+  
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to root_path
   end
 end

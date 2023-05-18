@@ -1,10 +1,8 @@
 module Admin
   class ProductsController < ::ProductsController
-    before_action :set_product, only: %i[show edit update destroy]
+    before_action :set_product, only: %i[edit update destroy]
+    before_action :authorize_admin
 
-
-    def show
-    end
 
     # GET /products/new
     def new
@@ -12,8 +10,7 @@ module Admin
     end
 
     # GET /products/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /products or /products.json
     def create
@@ -48,19 +45,22 @@ module Admin
       result = DestroyProduct.call(product: @product)
   
       if result.success?
-        redirect_to products_path, notice: "Product was successfully destroyed."
+        redirect_to admin_products_path, notice: "Product was successfully destroyed."
       else
         flash[:alert] = result.message
-        redirect_to product_path(@product)
+        redirect_to admin_product_path(@product)
       end
     end
 
     private
 
+    def authorize_admin
+      authorize [:admin, Product]
+    end
+
     def set_product
       @product = Product.find(params[:id])
       @product_view = ProductView.new(@product, current_user: current_user)
-
     end
 
     def product_params

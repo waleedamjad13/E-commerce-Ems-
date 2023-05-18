@@ -14,13 +14,19 @@ module Users
     # end
 
     # POST /resource/sign_in
-    # def create
-    #   super
-    # end
+    def create
+      super do |resource|
+        if resource.admin?
+          redirect_to admin_products_path and return
+        else
+          redirect_to root_path and return
+        end
+      end    
+    end
 
     # DELETE /resource/sign_out
     def destroy
-      super do |_resource|
+      super do |resource|
         redirect_to new_user_session_path and return
       end
     end
