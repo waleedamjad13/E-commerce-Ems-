@@ -16,17 +16,15 @@ module Users
     # POST /resource/sign_in
     def create
       super do |resource|
-        if resource.admin?
-          redirect_to admin_products_path and return
-        else
-          redirect_to root_path and return
-        end
-      end    
+        redirect_to admin_products_path and return if resource.admin?
+
+        redirect_to root_path and return
+      end
     end
 
     # DELETE /resource/sign_out
     def destroy
-      super do |resource|
+      super do |_resource|
         redirect_to new_user_session_path and return
       end
     end

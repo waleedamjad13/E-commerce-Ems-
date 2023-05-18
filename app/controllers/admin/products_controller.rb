@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module Admin
+  # controller for products that are namespaced inside admin
+  #
   class ProductsController < ::ProductsController
     before_action :set_product, only: %i[edit update destroy]
     before_action :authorize_admin
-
 
     # GET /products/new
     def new
@@ -17,23 +20,24 @@ module Admin
       result = CreateProduct.call(product_params: product_params)
 
       if result.success?
-        redirect_to admin_products_path, notice: "Product was successfully created."
+        redirect_to admin_products_path,
+          notice: 'Product was successfully created.'
       else
         @product = result.product
         render :new, status: :unprocessable_entity
       end
     end
-    
 
     # PATCH/PUT /products/1 or /products/1.json
     def update
       result = UpdateProduct.call(
-        product: @product, 
+        product: @product,
         product_params: product_params
       )
 
       if result.success?
-        redirect_to admin_product_path(@product), notice: "Product was successfully updated."
+        redirect_to admin_product_path(@product),
+          notice: 'Product was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -43,9 +47,10 @@ module Admin
     def destroy
       @product = Product.find(params[:id])
       result = DestroyProduct.call(product: @product)
-  
+
       if result.success?
-        redirect_to admin_products_path, notice: "Product was successfully destroyed."
+        redirect_to admin_products_path,
+          notice: 'Product was successfully destroyed.'
       else
         flash[:alert] = result.message
         redirect_to admin_product_path(@product)
@@ -64,7 +69,8 @@ module Admin
     end
 
     def product_params
-      params.require(:product).permit(:title, :price, :description, :status, :header_image, images: [])
+      params.require(:product).permit(:title, :price, :description, :status,
+        :header_image, images: [])
     end
   end
 end

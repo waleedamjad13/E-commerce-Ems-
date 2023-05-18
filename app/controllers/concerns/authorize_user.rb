@@ -10,9 +10,8 @@ module AuthorizeUser
     protect_from_forgery with: :exception
   end
 
-
   private
-  
+
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to root_path
