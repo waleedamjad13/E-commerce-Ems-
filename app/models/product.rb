@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# model for user
 class Product < ApplicationRecord
   extend QueryMethods
 

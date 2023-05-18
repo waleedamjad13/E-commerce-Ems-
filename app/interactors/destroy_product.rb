@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# interactor for destroy product
 class DestroyProduct < ApplicationInteractor
   delegate :product, to: :context
 

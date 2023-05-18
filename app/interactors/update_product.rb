@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# interactor for update product
 class UpdateProduct < ApplicationInteractor
   delegate :product, :product_params, to: :context
 

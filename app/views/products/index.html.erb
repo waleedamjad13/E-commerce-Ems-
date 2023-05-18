@@ -1,8 +1,29 @@
-
-<% if !current_user.admin? %>
-  <h2>User</h2>
-  <% @products.each do |product| %>
-    <%= product.title%>
-    <% product.status %>
+<div class="container">
+  <% if !current_user.admin? %>
+    <div class="text-center">
+      <h2>Products</h2>
+    </div>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <% if product.header_image.attached? %>
+              <%= image_tag product.header_image, class: "card-img-top product-image-header" %>
+            <% else %>
+              <p>No image available</p>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.title %></h5>
+              <p class="card-text"><%= product.description %> </p>
+              <div class="d-flex justify-content-between">
+                <%= button_to "View Details", product_path(product), method: :get, class: "btn btn-primary" %>
+                <%= button_to "Add to Cart", 'javascript:void(0)', method: :get, class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
+

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# interactor for create products
 class CreateProduct < ApplicationInteractor
   delegate :product, :product_params, to: :context
 
