@@ -1,0 +1,63 @@
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body px-5">
+          <div class="text-center">
+            <h2>Add Product</h2>
+          </div>
+          <%= form_with(model: [:admin, @product], local: true, class: 'form') do |form| %>
+            <% if product.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+                <ul>
+                  <% product.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>     
+
+            <div class="field mt-2">
+              <%= form.label :title %><br />
+              <%= form.text_field :title, class: 'form-control' %>
+            </div>
+
+            <div class="field mt-3">
+              <%= form.label :price %><br />
+              <%= form.number_field :price, class: 'form-control' %>
+            </div>
+
+            <div class="field mt-3">
+              <%= form.label :description %><br />
+              <%= form.text_field :description, class: 'form-control' %>
+            </div>
+
+            <div class="field mt-3">
+              <%= form.label :status %><br />
+              <%= form.select :status, options_for_select(Product.statuses.keys.map { |s| [s.titleize, s] }), prompt: "Select status" %>
+            </div>
+
+            <div class="field">
+              <%= form.label :header_image %>
+              <%= form.file_field :header_image %>
+            </div>
+
+            <div class="field">
+              <%= form.label :images %>
+              <%= form.file_field :images, multiple: true %>
+            </div>
+
+            <div class="actions text-center">
+              <%= form.submit "Add Product", class: "btn btn-primary mt-3 mb-3" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

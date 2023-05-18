@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  root to: 'admin/users#index'
+  root to: "products#index"
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
 
+  resources :products, only: [:index, :show]
 
   namespace :admin do
+    resources :products
     resources :users do
       collection do
         get 'export', format: :csv

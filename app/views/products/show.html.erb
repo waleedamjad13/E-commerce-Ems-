@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center">
+        <h2>Product Details</h2>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Title:</th>
+                <td><%= @product_view.title %></td>
+              </tr>
+              <tr>
+                <th>Description:</th>
+                <td><%= @product_view.description %></td>
+              </tr>
+              <tr>
+                <th>Price:</th>
+                <td><%= @product_view.price %></td>
+              </tr>
+              <tr>
+                <th>Status:</th>
+                <td><%= @product_view.status %></td>
+              </tr>
+               <tr>
+                <th>Cover Image:</th>
+                <% if @product_view.header_image.attached? %>
+                  <td>
+                    <%= image_tag @product.header_image, class: "img-fluid product-image" %>
+                  </td>
+                <% else %>
+                  <td>No image available</td>
+                <% end %>
+              </tr>
+              <th>All Images:</th>
+              <% if @product_view.images.attached? || @product_view.header_image.attached? %>
+                <div class="row justify-content-center">
+                  <% @product_view.images.each do |image| %>
+                    <div class="col-md-4">
+                      <td><%= image_tag image, class: "img-fluid product-image" %></td>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

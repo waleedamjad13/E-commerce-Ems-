@@ -29,7 +29,7 @@ module Admin
       )
 
       if result.success?
-        redirect_to root_path, notice: 'User was successfully updated.'
+        redirect_to admin_user_path, notice: 'User was successfully updated.'
       else
         render :edit, alert: result.error
       end
@@ -60,7 +60,11 @@ module Admin
     def user_params
       params
         .require(:user)
-        .permit(:firstname, :lastname, :email)
+        .permit(:firstname,
+          :lastname,
+          :email,
+          :password,
+          :password_confirmation)
     end
 
     def set_user
