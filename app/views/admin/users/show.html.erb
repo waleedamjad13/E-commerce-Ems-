@@ -1,37 +1,7 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="text-center">
-        <h2>User Details</h2>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th>First Name:</th>
-                <td><%= @user_view.firstname %></td>
-              </tr>
-              <tr>
-                <th>Last Name:</th>
-                <td><%= @user_view.lastname %></td>
-              </tr>
-              <tr>
-                <th>Email:</th>
-                <td><%= @user_view.email %></td>
-              </tr>
-              <tr>
-                <th>Admin:</th>
-                <td><%= @user_view.admin? %></td>
-              </tr>
-              <tr>
-                <th>Confirmed:</th>
-                <td><%= @user_view.confirmed? %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<b>First Name:</b><%= @user_view.firstname %> <br>
+<b>Last Name:</b> <%= @user_view.lastname %> <br>
+<b>Email:</b> <%= @user_view.email %> <br>
+<b>Admin:</b> <%= @user_view.admin? %> <br>
+<b>Confirmed:</b> <%= @user_view.confirmed? %> <br>
+
+<%= link_to 'Back', root_path %>

@@ -7,11 +7,10 @@ module Admin
   # controller for users that are namespaced inside admin
   #
   class UsersController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_user
 
     def index
-      @pagy, @users = pagy(User.non_admins, items: 5)
+      @pagy, @users = pagy(User.non_admins, items: 6)
 
       return unless params[:search].present? # rubocop:disable  Rails/Blank
 

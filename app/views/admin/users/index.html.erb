@@ -1,56 +1,40 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col">
-              <h1 class="text-center">Users</h1>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-        <div class="row">
-        <div class="col-lg-8">
-            <%= render 'admin/users/search' %>
-        </div>
-          <div class="col-lg-4 text-end">
-            <%= link_to 'Export CSV', export_admin_users_path(format: :csv), class: "btn btn-primary" %>
-          </div>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each do |user| %>
-                <% if !user.admin? %>
-                  <tr>
-                    <td><%= user.firstname %></td>
-                    <td><%= user.lastname %></td>
-                    <td><%= user.email %></td>
-                    <td><%= link_to 'Show', admin_user_path(user), class: "btn btn-outline-primary" %></td>
-                    <td><%= link_to 'Edit', edit_admin_user_path(user), class: "btn btn-outline-secondary"  %></td>
-                    <td><%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
-                  </tr>
-                <% end %>
-              <% end %>
-            </tbody>
-          </table>
-          <br>
-        </div>
-          <div class="pagy-custom-links">
-            <%== pagy_nav(@pagy) %>
-          </div>
-          <div class="pagy-custom-info">
-            <%== pagy_info(@pagy) %>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
+Logged in as:<%= current_user&.email %>
+<% if policy(:users).index? %>
+
+  <h1>Users</h1>
+  <%= render 'admin/users/search' %>
+  <%= link_to 'Export CSV', export_admin_users_path(format: :csv) %>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <% if !user.admin? %>
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to 'Show', admin_user_path(user) %></td>
+          <td><%= link_to 'Edit', edit_admin_user_path(user)  %></td>
+          <td><%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+<% end %>
+<%== pagy_nav(@pagy) %>
+
+<%= button_to "Logout", destroy_user_session_path, method: :delete %>
