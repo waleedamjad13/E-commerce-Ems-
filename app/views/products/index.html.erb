@@ -1,0 +1,8 @@
+
+<% if !current_user.admin? %>
+  <h2>User</h2>
+  <% @products.each do |product| %>
+    <%= product.title%>
+    <% product.status %>
+  <% end %>
+<% end %>

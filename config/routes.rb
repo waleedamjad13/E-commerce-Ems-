@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'admin/users#index'
+  root to: "products#index"
+  resources :products, only: [:index]
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root to: 'admin/users#index'
+
+    resources :products
     resources :users do
       collection do
         get 'export', format: :csv

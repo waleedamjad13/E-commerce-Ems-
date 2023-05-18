@@ -1,0 +1,50 @@
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center">
+        <h2>Product Details</h2>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Title:</th>
+                <td><%= @product.title %></td>
+              </tr>
+              <tr>
+                <th>Description:</th>
+                <td><%= @product_view.description %></td>
+              </tr>
+              <tr>
+                <th>Price:</th>
+                <td><%= @product_view.price %></td>
+              </tr>
+              <tr>
+                <th>Status:</th>
+                <td><%= @product_view.status %></td>
+              </tr>
+              <tr>
+                <th>Image:</th>
+                <% if @product.header_image.attached? %>
+                  <td><%= image_tag @product.header_image %></td>
+                <% else %>
+                  <td>No image available</td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if @product.images.attached? %>
+  <% @product.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
+<% end %>
+
