@@ -45,7 +45,6 @@ module Admin
 
     # DELETE /products/1 or /products/1.json
     def destroy
-      @product = Product.find(params[:id])
       result = DestroyProduct.call(product: @product)
 
       if result.success?

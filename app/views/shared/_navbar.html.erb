@@ -25,6 +25,9 @@
                 <%= link_to "Invite User", new_user_invitation_path, class: "nav-link active" %>
               </li>
               <li class="nav-item">
+                <%= link_to "Discounts", admin_discounts_path, class: "nav-link active" %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link active" %>
               </li>
             </ul>
