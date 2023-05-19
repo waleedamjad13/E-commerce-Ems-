@@ -64,7 +64,6 @@ module Admin
       end
     end
 
-
     private
 
     def authorize_admin

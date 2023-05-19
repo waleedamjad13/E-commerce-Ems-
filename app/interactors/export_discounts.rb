@@ -15,7 +15,7 @@ class ExportDiscounts < ApplicationInteractor
     require 'csv'
 
     CSV.generate(headers: true) do |csv|
-      csv << ['ID', 'Name', 'Value']
+      csv << %w[ID Name Value]
 
       discounts.each do |discount|
         csv << [discount.id, discount.name, discount.value]

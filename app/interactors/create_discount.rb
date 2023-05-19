@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# interactor for creating discount
 class CreateDiscount < ApplicationInteractor
   delegate :discount, :discount_params, to: :context
 
