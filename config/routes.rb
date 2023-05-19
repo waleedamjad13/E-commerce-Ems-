@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
 
   namespace :admin do
+    resources :discounts
+
     resources :categories
     
     resources :products do
