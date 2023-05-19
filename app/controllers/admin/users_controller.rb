@@ -39,9 +39,9 @@ module Admin
       result = DestroyUser.call(id: params[:id])
 
       if result.success?
-        redirect_to root_path, notice: result.notice
+        redirect_to admin_users_path, notice: result.notice
       else
-        redirect_to root_path, alert: result.error
+        redirect_to admin_users_path, alert: result.error
       end
     end
 
