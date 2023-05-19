@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
 
   namespace :admin do
+    resources :discounts
+
     resources :categories
     get 'sort/:column(/:direction)', to: 'categories#index', as: 'sort'
 
