@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
 
   namespace :admin do
+    resources :categories
+    
     resources :products do
       collection do
         get 'export', format: :csv
