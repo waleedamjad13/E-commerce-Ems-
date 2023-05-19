@@ -73,3 +73,4 @@ gem 'pagy', '~> 6.0'
 gem 'prawn'
 gem 'pdf-reader'
 
+gem 'devise_invitable'
