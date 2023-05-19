@@ -15,10 +15,11 @@ class ExportProducts < ApplicationInteractor
     require 'csv'
 
     CSV.generate(headers: true) do |csv|
-      csv << ['Tilte', 'Description', 'Price', 'Status']
+      csv << %w[Tilte Description Price Status]
 
       products.each do |product|
-        csv << [product.title, product.description, product.price, product.status]
+        csv << [product.title, product.description, product.price,
+                product.status]
       end
     end
   end

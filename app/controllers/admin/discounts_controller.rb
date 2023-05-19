@@ -75,23 +75,23 @@ module Admin
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_discount
-        @discount = Discount.find_by(id: params[:id])
 
-        @discount ||= Discount.new
+    # Use callbacks to share common setup or constraints between actions.
+    def set_discount
+      @discount = Discount.find_by(id: params[:id])
 
-        @discount_view = DiscountView.new(@discount)
+      @discount ||= Discount.new
 
-      end
+      @discount_view = DiscountView.new(@discount)
+    end
 
-      # Only allow a list of trusted parameters through.
-      def discount_params
-        params.require(:discount).permit(:name, :value)
-      end
+    # Only allow a list of trusted parameters through.
+    def discount_params
+      params.require(:discount).permit(:name, :value)
+    end
 
-      def authorize_admin
-        authorize [:admin, Discount]
-      end
+    def authorize_admin
+      authorize [:admin, Discount]
+    end
   end
 end
