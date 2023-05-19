@@ -57,6 +57,17 @@ module Admin
       end
     end
 
+    def export
+      result = ExportProducts.call(search_terms: params[:search])
+
+      if result.success?
+        send_data result.csv_data, filename: result.filename
+      else
+        redirect_to root_path, alert: result.error
+      end
+    end
+
+
     private
 
     def authorize_admin

@@ -3,9 +3,14 @@
 # controller for products that are for normal users
 class ProductsController < ApplicationController
   def index
-    @products = Product.all_products(current_user)
+    @pagy, @products = pagy(Product.all_products(current_user), items: 9)
 
     @product_views = ProductView.collection(@products)
+
+    return unless params[:search].present?
+
+    @products = @products.search(params[:search])
+  
   end
 
   def show
