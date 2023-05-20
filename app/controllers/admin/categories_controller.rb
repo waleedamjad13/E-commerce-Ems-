@@ -17,7 +17,7 @@ module Admin
       result = CreateCategory.call(category_params: category_params)
 
       if result.success?
-        redirect_to admin_categories_path,
+        redirect_to polymorphic_path([:admin, @category]),
           notice: 'Category was successfully created.'
       else
         @category = result.category
@@ -36,7 +36,7 @@ module Admin
       )
 
       if result.success?
-        redirect_to admin_category_path(@category),
+        redirect_to polymorphic_path([:admin, @category]),
           notice: 'Category was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
@@ -47,7 +47,7 @@ module Admin
       result = DestroyCategory.call(category: @category)
 
       if result.success?
-        redirect_to admin_categories_path,
+        redirect_to polymorphic_path([:admin, @category]),
           notice: 'Category was successfully deleted.'
       else
         flash[:alert] = result.message
@@ -65,7 +65,7 @@ module Admin
     end
 
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :active)
     end
   end
 end
