@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2023_05_20_122113) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "discounts_products", force: :cascade do |t|
+  create_table "discount_products", force: :cascade do |t|
     t.integer "discount_id"
     t.integer "product_id"
   end
@@ -60,11 +60,6 @@ ActiveRecord::Schema.define(version: 2023_05_20_122113) do
     t.integer "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "discounts_products", force: :cascade do |t|
-    t.integer "discount_id"
-    t.integer "product_id"
   end
 
   create_table "products", force: :cascade do |t|
