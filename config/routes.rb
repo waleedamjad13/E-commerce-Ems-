@@ -10,14 +10,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products do
-      collection do
-        get 'export', format: :csv
-      end
+      collection { get 'export', format: :csv }
     end
     resources :users do
-      collection do
-        get 'export', format: :csv
-      end
+      collection { get 'export', format: :csv }
     end
 
   end
