@@ -24,6 +24,10 @@
                 <th>Status:</th>
                 <td><%= @product_view.status %></td>
               </tr>
+              <tr>
+                <th>Category:</th>
+                <td><%= @product.category.name %></td>
+              </tr>
                <tr>
                 <th>Cover Image:</th>
                 <% if @product_view.header_image.attached? %>
