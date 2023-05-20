@@ -8,7 +8,8 @@ class Product
     def all_products(user)
       return Product.all if user&.admin?
 
-      where(status: 'publish')
+      joins(:category)
+        .where(status: 'publish', categories: {active: true})
     end
 
     def search(search_terms, user)

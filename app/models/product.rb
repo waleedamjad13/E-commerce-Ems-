@@ -8,7 +8,9 @@ class Product < ApplicationRecord
   has_many_attached :images
   belongs_to :user
 
-  has_and_belongs_to_many :discounts
+  has_many :discount_products
+  has_many :discounts, through: :discount_products
+
   enum status: {
     pending: 0,
     draft: 1,

@@ -4,5 +4,6 @@
 class Discount < ApplicationRecord
   extend QueryMethods
 
-  has_and_belongs_to_many :products
+  has_many :discount_products
+  has_many :products, through: :discount_products
 end
