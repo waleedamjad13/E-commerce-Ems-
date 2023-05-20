@@ -36,12 +36,12 @@
 
             <div class="field mt-3">
               <%= form.label :status %><br />
-              <%= form.select :status, options_for_select(Product.statuses.keys.map { |s| [s.titleize, s] }), prompt: "Select status" %>
+              <%= form.select :status, options_for_select(@product_view.status_options), prompt: "Select status" %>
             </div>
 
             <div class="field mt-3">
               <%= form.label :category_id %><br />
-              <%= form.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id]}, @product.category_id), prompt: "Select Category" %>
+              <%= form.select :category_id, options_for_select(@product_view.category_options, @product.category_id), prompt: "Select Category" %>
             </div>
 
             <div class="field">
