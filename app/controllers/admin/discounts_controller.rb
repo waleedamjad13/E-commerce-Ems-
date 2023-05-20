@@ -79,7 +79,6 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_discount
       @discount = Discount.find_by(id: params[:id])
-
       @discount ||= Discount.new
 
       @discount_view = DiscountView.new(@discount)
