@@ -11,6 +11,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :confirmable
 
+  has_many :products
+
   #
   # validations
   #

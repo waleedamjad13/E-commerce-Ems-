@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-
 module Admin
   # controller for discounts that are namespaced inside admin
   #
   class DiscountsController < ApplicationController
+    before_action :authorize_admin
     before_action :set_discount
 
     # GET /discounts or /discounts.json
     def index
-      @discounts = Discount.all
+      @pagy, @discounts = pagy(Discount.all, items: 5)
+
+      @discounts = @discounts.search(params[:search])
     end
 
     # GET /discounts/1 or /discounts/1.json
@@ -43,7 +45,7 @@ module Admin
 
       if result.success?
         redirect_to admin_discount_path(@discount),
-          notice: 'discount was successfully updated.'
+          notice: 'Discount was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
       end
@@ -62,17 +64,33 @@ module Admin
       end
     end
 
+    def export
+      result = ExportDiscounts.call(search_terms: params[:search])
+
+      if result.success?
+        send_data result.csv_data, filename: result.filename
+      else
+        redirect_to root_path, alert: result.error
+      end
+    end
+
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_discount
-        @discount = Discount.find_by(id: params[:id])
 
-        @discount ||= Discount.new
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_discount
+      @discount = Discount.find_by(id: params[:id])
+      @discount ||= Discount.new
 
-      # Only allow a list of trusted parameters through.
-      def discount_params
-        params.require(:discount).permit(:name, :value)
-      end
+      @discount_view = DiscountView.new(@discount)
+    end
+
+    # Only allow a list of trusted parameters through.
+    def discount_params
+      params.require(:discount).permit(:name, :value)
+    end
+
+    def authorize_admin
+      authorize [:admin, Discount]
+    end
   end
 end

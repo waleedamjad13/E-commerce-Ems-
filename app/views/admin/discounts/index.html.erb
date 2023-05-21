@@ -12,10 +12,10 @@
         <div class="card-body">
         <div class="row">
         <div class="col-lg-8">
-            <%= render 'admin/products/search' %>
+            <%= render 'admin/discounts/search' %>
         </div>
           <div class="col-lg-4 text-end">
-            <%= link_to 'Export CSV', export_admin_users_path(format: :csv), class: "btn btn-primary" %>
+            <%= link_to 'Export CSV', export_admin_discounts_path(format: :csv), class: "btn btn-primary" %>
           </div>
           <table class="table">
             <thead>
@@ -42,6 +42,12 @@
           <br>
         </div>
           <%= link_to 'New Discount', new_admin_discount_path, class: "btn btn-primary" %>
+      </div>
+      <div class="pagy-custom-links">
+        <%== pagy_nav(@pagy) %>
+      </div>
+      <div class="pagy-custom-info">
+        <%== pagy_info(@pagy) %>
       </div>
     </div>
   </div>

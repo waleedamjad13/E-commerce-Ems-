@@ -7,10 +7,9 @@ class ProductsController < ApplicationController
 
     @product_views = ProductView.collection(@products)
 
-    return unless params[:search].present?
+    return unless params[:search].present? # rubocop:disable  Rails/Blank
 
     @products = @products.search(params[:search], current_user)
-  
   end
 
   def show
