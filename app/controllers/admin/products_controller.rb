@@ -4,13 +4,11 @@ module Admin
   # controller for products that are namespaced inside admin
   #
   class ProductsController < ::ProductsController
-    before_action :set_product, only: %i[edit update destroy]
+    before_action :set_product
     before_action :authorize_admin
 
     # GET /products/new
-    def new
-      @product = Product.new
-    end
+    def new; end
 
     # GET /products/1/edit
     def edit; end
@@ -45,7 +43,6 @@ module Admin
 
     # DELETE /products/1 or /products/1.json
     def destroy
-      @product = Product.find(params[:id])
       result = DestroyProduct.call(product: @product)
 
       if result.success?
@@ -57,6 +54,17 @@ module Admin
       end
     end
 
+    def export
+      result = ExportProducts.call(search_terms: params[:search])
+
+      if result.success?
+        send_data result.csv_data, filename: result.filename
+      else
+        redirect_to root_path, alert: result.error
+      end
+    end
+
+
     private
 
     def authorize_admin
@@ -64,13 +72,15 @@ module Admin
     end
 
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by(id: params[:id])
+      @product ||= Product.new
+
       @product_view = ProductView.new(@product, current_user: current_user)
     end
 
     def product_params
       params.require(:product).permit(:title, :price, :description, :status,
-        :header_image, images: [])
+        :header_image, :category_id  ,images: [])
     end
   end
 end

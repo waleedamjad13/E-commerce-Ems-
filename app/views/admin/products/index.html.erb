@@ -1,7 +1,3 @@
-
-
-
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -15,7 +11,12 @@
         </div>
         <div class="card-body">
         <div class="row">
-
+        <div class="col-lg-8">
+            <%= render 'admin/products/search' %>
+        </div>
+          <div class="col-lg-4 text-end">
+            <%= link_to 'Export CSV', export_admin_users_path(format: :csv), class: "btn btn-primary" %>
+          </div>
           <table class="table">
             <thead>
               <tr>
@@ -30,8 +31,8 @@
               <% @product_views.each do |product| %>
                   <tr>
                     <td><%= product.title %></td>
-                    <td><%= product.price %></td>
                     <td><%= product.description %></td>
+                    <td><%= product.price %></td>
                     <td><%= product.status %></td>
                     <td><%= link_to 'Show', admin_product_path(product), class: "btn btn-outline-primary" %></td>
                     <td><%= link_to 'Edit', edit_admin_product_path(product), class: "btn btn-outline-secondary"  %></td>
@@ -42,6 +43,12 @@
           </table>
           <br>
         </div>
+      </div>
+      <div class="pagy-custom-links">
+        <%== pagy_nav(@pagy) %>
+      </div>
+      <div class="pagy-custom-info">
+        <%== pagy_info(@pagy) %>
       </div>
     </div>
   </div>

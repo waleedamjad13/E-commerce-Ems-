@@ -1,10 +1,19 @@
+<div class="row">
+
+</div>
 <div class="container">
+
   <% if !current_user.admin? %>
     <div class="text-center">
       <h2>Products</h2>
     </div>
     <div class="row">
-      <% @products.each do |product| %>
+      <div class="col-lg-4">
+        <%= render 'products/search' %>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <% @product_views.each do |product| %>
         <div class="col-md-4">
           <div class="card" style="width: 18rem;">
             <% if product.header_image.attached? %>
@@ -23,6 +32,12 @@
           </div>
         </div>
       <% end %>
+    </div>
+    <div class="pagy-custom-links">
+      <%== pagy_nav(@pagy) %>
+    </div>
+    <div class="pagy-custom-info">
+      <%== pagy_info(@pagy) %>
     </div>
   <% end %>
 </div>
