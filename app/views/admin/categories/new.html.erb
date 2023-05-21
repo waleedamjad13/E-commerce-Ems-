@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body px-5">
+          <div class="text-center">
+            <h2>Add Category</h2>
+          </div>
+          <%= form_with(model: [:admin, @category], local: true, class: 'form') do |form| %>
+            <div class="field mt-2">
+              <%= form.label :name %><br />
+              <%= form.text_field :name, class: 'form-control' %>
+            </div>
+
+            <div class="field mt-2">
+              <%= form.label :active %><br />
+              <%= form.check_box :active%>
+            </div>
+
+            <div class="actions text-center">
+              <%= form.submit "Add Categroy", class: "btn btn-primary mt-3 mb-3" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
