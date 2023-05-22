@@ -81,5 +81,7 @@ module Admin
       params.require(:product).permit(:title, :price, :description, :status,
         :header_image, :category_id, images: [])
     end
+    
   end
 end
+
