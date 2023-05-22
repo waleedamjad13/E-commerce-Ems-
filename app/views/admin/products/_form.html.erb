@@ -3,9 +3,6 @@
     <div class="col-lg-4">
       <div class="card">
         <div class="card-body px-5">
-          <div class="text-center">
-            <h2>Add Product</h2>
-          </div>
           <%= form_with(model: [:admin, @product], local: true, class: 'form') do |form| %>
             <% if product.errors.any? %>
               <div id="error_explanation">
