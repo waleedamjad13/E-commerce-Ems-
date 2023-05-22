@@ -15,4 +15,8 @@ class ProductView < ApplicationView
   def category_options
     Category.all.map { |category| [category.name, category.id] }
   end
+
+  def all_images
+    [header_image] + images
+  end
 end

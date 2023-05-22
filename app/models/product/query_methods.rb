@@ -14,7 +14,7 @@ class Product
 
     def search(search_terms, user)
       query = 'title LIKE :term OR price = :price_term'
-      query.merge!(' OR status = :status_term') if user.admin?
+      query = query.merge(' OR status = :status_term') if user.admin?
 
       where(
         query,
