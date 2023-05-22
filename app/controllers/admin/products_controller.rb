@@ -7,6 +7,15 @@ module Admin
     before_action :set_product
     before_action :authorize_admin
 
+    def index
+      super
+    
+      column = params[:column] || 'title'
+      direction = params[:direction] || 'asc'
+
+      @products = @products.order("#{column.to_sym} #{direction.to_sym.upcase}")
+    end
+    
     # GET /products/new
     def new; end
 

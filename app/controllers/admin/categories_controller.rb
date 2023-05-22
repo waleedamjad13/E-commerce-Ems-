@@ -8,7 +8,10 @@ module Admin
     before_action :set_category
 
     def index
-      @categories = Category.all
+      column = params[:column] || 'id' 
+      direction = params[:direction] || 'asc'
+  
+      @categories = Category.order("#{column} #{direction.upcase}")
     end
 
     def new; end

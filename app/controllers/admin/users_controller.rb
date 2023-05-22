@@ -10,13 +10,18 @@ module Admin
     before_action :authenticate_user!
     before_action :set_user
 
-    def index
-      @pagy, @users = pagy(User.non_admins, items: 5)
+def index
+  @pagy, @users = pagy(User.non_admins, items: 5)
 
-      return unless params[:search].present? # rubocop:disable  Rails/Blank
+  if params[:search].present?
+    @users = @users.search_by_name(params[:search])
+  end
 
-      @users = @users.search_by_name(params[:search])
-    end
+  column = params[:column] || 'firstname'
+  direction = params[:direction] || 'asc'
+  @users = @users.order("#{column} #{direction.upcase}")
+end
+
 
     def show; end
 

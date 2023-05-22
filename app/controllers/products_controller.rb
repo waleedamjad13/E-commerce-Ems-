@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     return unless params[:search].present?
 
     @products = @products.search(params[:search], current_user)
-  
+
   end
 
   def show
