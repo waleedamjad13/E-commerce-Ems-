@@ -1,13 +1,27 @@
-class CartsController < ApplicationController
+# frozen_string_literal: true
 
-  def show
-    @cart = @current_cart
+# controller for carts
+class CartsController < ApplicationController
+  before_action :set_products, only: [:create]
+  def create
+    result = CreateCart.call(product: @product, user: current_user,
+      order_items_params: [{ product: @product }])
+
+    if result.success?
+      redirect_to cart_path(result.cart), notice: 'Product added to cart.'
+    else
+      redirect_to product_path(product), alert: result.error
+    end
   end
 
-  def destroy
-    @cart = @current_cart
-    @cart.destroy
-    session[:cart_id] = nil
-    redirect_to root_path
+  def show
+    @cart = current_user.cart
+    @order_items = @cart.order_items
+  end
+
+  private
+
+  def set_products
+    @product = Product.find(params[:product_id])
   end
 end

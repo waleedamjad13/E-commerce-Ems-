@@ -5,10 +5,8 @@ class ApplicationController < ActionController::Base
   include AuthorizeUser
   include PagyHelpers
   include AdminNamespace
-  include InitializeCart
 
   before_action :set_user_view
-  before_action :current_cart
 
   private
 

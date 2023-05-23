@@ -84,3 +84,12 @@
   max-width: 100%;
   height: auto;
 }
+
+.quantity-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-buttons span {
+  margin: 0 10px;
+}

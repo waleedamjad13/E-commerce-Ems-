@@ -7,17 +7,13 @@ Rails.application.routes.draw do
     invitations: 'users/invitations'
   }
 
+  resources :carts, only: [:create, :show, :destroy] do
+    resources :order_items, only: [:create, :update, :destroy]
+  end
+  
+  
+
   resources :products, only: [:index, :show]
-
-  get 'carts/:id', to: "carts#show", as: "cart"
-  delete 'carts/:id', to: "carts#destroy"
-
-  post 'order_items', to: "order_items#create"
-  get 'order_items/:id', to: "order_items#show", as: "order_item"
-  delete 'order_items/:id', to: "order_items#destroy"
-
-  post 'order_items/:id/add', to: "order_items#add_quantity", as: "order_item_add"
-  post 'order_items/:id/reduce', to: "order_items#reduce_quantity", as: "order_item_reduce"
 
   namespace :admin do
     resources :discounts do 

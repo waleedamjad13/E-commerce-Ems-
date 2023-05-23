@@ -2,6 +2,8 @@
 
 # model for user
 class User < ApplicationRecord
+  has_one :cart
+
   extend QueryMethods
 
   PASSWORD_FORMAT = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"?$%^&.])\S{8,}\z/.freeze # rubocop:disable Layout/LineLength
