@@ -37,5 +37,9 @@ module Admin
     def destroy?
       user.admin?
     end
+
+    def export?
+      user.admin?
+    end
   end
 end
