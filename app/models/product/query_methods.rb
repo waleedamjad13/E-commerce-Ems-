@@ -9,13 +9,13 @@ class Product
       return Product.all if user&.admin?
 
       joins(:category)
-        .where(status: 'publish', categories: {active: true})
+        .where(status: 'publish', categories: { active: true })
     end
 
     def search(search_terms, user)
       query = 'title LIKE :term OR price = :price_term'
-      query = query.merge!(' OR status = :status_term') if user.admin?
-      
+      query.merge!(' OR status = :status_term') if user.admin?
+
       where(
         query,
         term: "%#{search_terms}%",

@@ -23,9 +23,10 @@
 
               <thead>
                 <tr>
-                  <th><%= link_to 'First Name', sort_users_admin_users_path(column: :firstname, direction: toggle_direction(:firstname)) %></th>
-                  <th><%= link_to 'Last Name', sort_users_admin_users_path(column: :lastname, direction: toggle_direction(:lastname)) %></th>
-                  <th><%= link_to 'Email', sort_users_admin_users_path(column: :email, direction: toggle_direction(:email)) %></th>
+                  <th><%= link_to 'First Name', sort_users_admin_users_path(column: :firstname, direction: @user_view.toggle_direction(:firstname, params[:column], params[:direction])) %></th>
+                  <th><%= link_to 'Last Name', sort_users_admin_users_path(column: :lastname, direction: @user_view.toggle_direction(:lastname, params[:column], params[:direction])) %></th>
+                  <th><%= link_to 'Email', sort_users_admin_users_path(column: :email, direction: @user_view.toggle_direction(:email, params[:column], params[:direction])) %></th>
+
                   <th colspan="3"></th>
                 </tr>
               </thead>

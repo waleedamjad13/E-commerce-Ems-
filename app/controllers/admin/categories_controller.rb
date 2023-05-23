@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 module Admin
   # controller for users that are namespaced inside admin
   #
@@ -8,10 +7,10 @@ module Admin
     before_action :set_category
 
     def index
-      column = params[:column] || 'id' 
+      column = params[:column] || 'id'
       direction = params[:direction] || 'asc'
-  
-      @categories = Category.order("#{column} #{direction.upcase}")
+
+      @categories = Category.sorting(column, direction)
     end
 
     def new; end

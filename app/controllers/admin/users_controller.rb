@@ -10,18 +10,17 @@ module Admin
     before_action :authenticate_user!
     before_action :set_user
 
-def index
-  @pagy, @users = pagy(User.non_admins, items: 5)
+    def index
+      @pagy, @users = pagy(User.non_admins, items: 5)
 
-  if params[:search].present?
-    @users = @users.search_by_name(params[:search])
-  end
+      if params[:search].present?
+        @users = @users.search_by_name(params[:search])
+      end
 
-  column = params[:column] || 'firstname'
-  direction = params[:direction] || 'asc'
-  @users = @users.order("#{column} #{direction.upcase}")
-end
-
+      column = params[:column] || 'firstname'
+      direction = params[:direction] || 'asc'
+      @users = @users.sorting(column, direction)
+    end
 
     def show; end
 
