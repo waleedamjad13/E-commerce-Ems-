@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  # controller for users that are namespaced inside admin
+  # controller for categories that are namespaced inside admin
   #
   class CategoriesController < ApplicationController
     before_action :set_category

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   
 
   namespace :admin do
-    resources :discounts
+    resources :discounts do 
+      collection do
+        get 'export', format: :csv
+      end
+    end
 
     resources :categories
     get 'sort/:column(/:direction)', to: 'categories#index', as: 'sort'
