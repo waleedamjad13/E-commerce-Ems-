@@ -19,6 +19,7 @@ module Admin
 
       column = params[:column] || 'firstname'
       direction = params[:direction] || 'asc'
+
       @users = @users.sorting(column, direction)
     end
 
