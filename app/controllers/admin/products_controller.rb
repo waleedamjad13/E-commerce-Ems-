@@ -64,7 +64,6 @@ module Admin
       end
     end
 
-
     private
 
     def authorize_admin
@@ -80,7 +79,7 @@ module Admin
 
     def product_params
       params.require(:product).permit(:title, :price, :description, :status,
-        :header_image, :category_id  ,images: [])
+        :header_image, :category_id, images: [])
     end
   end
 end

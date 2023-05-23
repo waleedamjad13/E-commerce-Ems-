@@ -13,9 +13,14 @@ module Admin
     def index
       @pagy, @users = pagy(User.non_admins, items: 5)
 
-      return unless params[:search].present? # rubocop:disable  Rails/Blank
+      if params[:search].present?
+        @users = @users.search_by_name(params[:search])
+      end
 
-      @users = @users.search_by_name(params[:search])
+      column = params[:column] || 'firstname'
+      direction = params[:direction] || 'asc'
+
+      @users = @users.sorting(column, direction)
     end
 
     def show; end

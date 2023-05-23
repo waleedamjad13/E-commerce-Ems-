@@ -23,3 +23,5 @@ import 'controllers'
 
 import "bootstrap"
 import "../stylesheets/application"
+import $ from 'jquery';
+global.$ = jQuery = $;

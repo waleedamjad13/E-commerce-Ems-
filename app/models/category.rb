@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# model for category
 class Category < ApplicationRecord
-  has_many :products
+  extend QueryMethods
+
+  has_many :products, dependent: :destroy
 end

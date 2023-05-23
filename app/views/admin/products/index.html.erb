@@ -20,15 +20,15 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Status</th>
+                  <th><%= link_to 'Title', sort_admin_products_path(column: :title, direction: @user_view.toggle_direction(:title, params[:column], params[:direction])) %></th>
+                  <th><%= link_to 'Description', sort_admin_products_path(column: :description, direction: @user_view.toggle_direction(:description, params[:column], params[:direction])) %></th>
+                  <th><%= link_to 'Price', sort_admin_products_path(column: :price, direction: @user_view.toggle_direction(:price, params[:column], params[:direction])) %></th>
+                  <th><%= link_to 'Status', sort_admin_products_path(column: :status, direction: @user_view.toggle_direction(:status, params[:column], params[:direction])) %></th>
                 <th colspan="3"></th>
               </tr>
             </thead>
             <tbody>
-              <% @product_views.each do |product| %>
+              <% @products.each do |product| %>
                   <tr>
                     <td><%= product.title %></td>
                     <td><%= product.description %></td>

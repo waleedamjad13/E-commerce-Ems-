@@ -15,5 +15,9 @@ class User
     def non_admins
       where('admin = ?', false)
     end
+
+    def sorting(column, direction)
+      order("#{column} #{direction.upcase}")
+    end
   end
 end

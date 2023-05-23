@@ -7,15 +7,19 @@ Rails.application.routes.draw do
   }
 
   resources :products, only: [:index, :show]
+  
 
   namespace :admin do
     resources :categories
-    
+    get 'sort/:column(/:direction)', to: 'categories#index', as: 'sort'
+
     resources :products do
       collection { get 'export', format: :csv }
+      get 'sort/:column(/:direction)', on: :collection, action: :index, as: 'sort'
     end
     resources :users do
       collection { get 'export', format: :csv }
+      get 'sort/:column(/:direction)', action: :index, on: :collection, as: 'sort_users'
     end
 
   end
