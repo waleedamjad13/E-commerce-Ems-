@@ -44,7 +44,9 @@
               <p class="card-text"><%= product.description %> </p>
               <div class="d-flex justify-content-between">
                 <%= button_to "View Details", product_path(product), method: :get, class: "btn btn-primary" %>
-                <%= button_to "Add to Cart", 'javascript:void(0)', method: :get, class: "btn btn-primary" %>
+              <% unless @current_cart.products.exists?(id: product.id) %>
+                <%= button_to "Add to Cart", order_items_path(product_id: product.id), class: "btn btn-primary" %>
+              <% end %>
               </div>
             </div>
           </div>

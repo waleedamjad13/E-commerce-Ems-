@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   extend QueryMethods
 
   belongs_to :category
+  has_many :order_items, dependent: :destroy
 
   has_one_attached :header_image
   has_many_attached :images

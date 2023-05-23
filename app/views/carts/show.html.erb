@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>Cart show</h2>
+  <div class="card">
+    <div class="card-body">
+      <ul class="list-group">
+        <% @cart.order_items.each do |order_item| %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>Item:</strong> <%= order_item.product.title %>
+              </div>
+              <div class="col-md-2">
+                <strong>Price:</strong> <%= order_item.product.price %>
+              </div>
+              <div class="col-md-2">
+                <strong>Quantity:</strong> <%= order_item.quantity %>
+              </div>
+              <div class="col-md-2">
+                <strong>Total Price:</strong> <%= order_item.total_price %>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <%= link_to "Add", order_item_add_path(id: order_item), method: :post, class: "btn btn-success btn-sm mr-2" %>
+                <%= link_to "Remove", order_item_reduce_path(id: order_item), method: :post, class: "btn btn-warning btn-sm" %>
+              </div>
+              <div class="col-md-6 text-right">
+                <%= link_to "Remove item", order_item_path(order_item), method: :delete, class: "btn btn-danger btn-sm" %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <h3 class="card-title">Sub total: <%= @cart.sub_total %></h3>
+      <%= link_to "Empty cart", cart_path(@current_cart), method: :delete, class: "btn btn-danger mt-3", data: { confirm: "Are you sure?" } %>
+    </div>
+  </div>
+</div>
