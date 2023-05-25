@@ -7,9 +7,13 @@
         <table class="table">
           <thead>
             <tr>
+              <th colspan="4"><strong>Address:</strong> <%= order.address %></th>
+            </tr>
+            <tr>
               <th>Product</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +27,7 @@
             <% end %>
             <tr>
               <td colspan="3" class="text-right"><strong>Subtotal:</strong></td>
-              <td><%= order.sub_total %></td>
+              <td><strong><%= order.sub_total %></strong></td>
             </tr>
           </tbody>
         </table>
