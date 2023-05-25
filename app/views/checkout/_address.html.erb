@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Address</h2>
+          <%= form_with model: @order, url: checkout_create_path, method: :post do |form| %>
+            <% if flash[:error_messages].present? %>
+              <div class="error-messages">
+                <% flash[:error_messages].each do |message| %>
+                  <p><%= message %></p>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= form.text_field :address, class: "form-control" %>
+            </div>
+            <div class="text-center mt-3">
+              <%= form.submit 'Proceed to Checkout', class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

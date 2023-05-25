@@ -1,0 +1,8 @@
+const stripe = Stripe("<%= @publishable_key %>");
+const checkoutButton = document.getElementById('checkout-button');
+
+  stripe.redirectToCheckout({
+    sessionId: '<%= @session.id %>'
+  }).then(function(result) {
+    console.log(result.error.message);
+  });

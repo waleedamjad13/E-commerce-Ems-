@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Orders</h1>
+
+  <% @orders.each do |order| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="4"><strong>Address:</strong> <%= order.address %></th>
+            </tr>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% order.order_items.each do |order_item| %>
+              <tr>
+                <td><%= order_item.product.title %></td>
+                <td><%= order_item.quantity %></td>
+                <td><%= order_item.total_price %></td>
+                <td></td>
+              </tr>
+            <% end %>
+            <tr>
+              <td colspan="3" class="text-right"><strong>Subtotal:</strong></td>
+              <td><strong><%= order.sub_total %></strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

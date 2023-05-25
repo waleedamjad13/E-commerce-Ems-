@@ -5,8 +5,8 @@
 class ProductView < ApplicationView
   alias product model
 
-  delegate :title, :description, :price, :status, :header_image, :category_id,
-    :images, to: :product
+  delegate :id, :title, :description, :price, :status, :header_image, :category_id, :images,
+    to: :product
 
   def status_options
     Product.statuses.keys.map { |s| [s.titleize, s] }
