@@ -1,10 +1,7 @@
-# frozen_string_literal: true
-
-# model for cart
-class Cart < ApplicationRecord
+class Order < ApplicationRecord
+  extend QueryMethods
   belongs_to :user
-  has_many :order_items
-  has_many :products, through: :order_items
+  has_many :order_items, dependent: :destroy
 
   def sub_total
     sum = 0

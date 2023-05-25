@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/new'
   root to: "products#index"
 
   devise_for :users, controllers: {
@@ -11,7 +14,11 @@ Rails.application.routes.draw do
     resources :order_items, only: [:create, :update, :destroy]
   end
   
-  
+  resources :address, only: [:new, :create]
+
+  get 'checkout/orders', to: 'checkout#orders'
+
+  post "checkout/create", to: "checkout#create"
 
   resources :products, only: [:index, :show]
 

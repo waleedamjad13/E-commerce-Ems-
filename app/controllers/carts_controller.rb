@@ -3,6 +3,7 @@
 # controller for carts
 class CartsController < ApplicationController
   before_action :set_products, only: [:create]
+
   def create
     result = CreateCart.call(product: @product, user: current_user,
       order_items_params: [{ product: @product }])
@@ -16,7 +17,9 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_user.cart
-    @order_items = @cart.order_items
+    @order_items = @cart.order_items if @cart.present?
+    @publishable_key = Rails.configuration.stripe[:publishable_key]
+
   end
 
   private
