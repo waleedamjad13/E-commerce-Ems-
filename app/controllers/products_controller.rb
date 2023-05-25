@@ -3,6 +3,7 @@
 # controller for products that are for normal users
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @pagy, @products = pagy(Product.all_products(current_user), items: 9)
 

@@ -4,6 +4,7 @@
   </div>
   <div class="card">
     <div class="card-body">
+     <% if @cart.present? %>
       <table class="table">
         <thead>
           <tr>
@@ -14,16 +15,17 @@
           </tr>
         </thead>
         <tbody>
+       
           <% @order_items.each do |order_item| %>
             <tr>
               <td><%= order_item.product.title %></td>
               <td><%= order_item.product.price %></td>
               <td class="quantity-buttons">
-                <%= button_to "+", cart_order_item_path(@cart, order_item), params: { add_quantity: true }, method: :patch, class: "btn btn-success btn-sm" %>
-                <span><%= order_item.quantity %></span>
                 <% if order_item.quantity > 1 %>
                   <%= button_to "-", cart_order_item_path(@cart, order_item), params: { reduce_quantity: true }, method: :patch, class: "btn btn-danger btn-sm" %>
                 <% end %>
+                <span><%= order_item.quantity %></span>
+                <%= button_to "+", cart_order_item_path(@cart, order_item), params: { add_quantity: true }, method: :patch, class: "btn btn-success btn-sm" %>
               </td>
               <td><%= order_item.total_price %></td>
               <td><%= button_to "Remove", cart_order_item_path(@cart, order_item), method: :delete, data: { confirm: "Are you sure you want to remove this item from the cart?" }, class: "btn btn-danger" %></td>
@@ -40,3 +42,9 @@
     </div>
   </div>
 </div>
+
+<%= render 'checkout/address' %>
+
+<% else %>
+  <p>Your cart is empty</p>
+<% end %>
