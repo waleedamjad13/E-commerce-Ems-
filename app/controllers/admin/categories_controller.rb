@@ -71,5 +71,9 @@ module Admin
     def category_params
       params.require(:category).permit(:name, :active)
     end
+
+    def authorize_admin
+      authorize [:admin, Category]
+    end
   end
 end

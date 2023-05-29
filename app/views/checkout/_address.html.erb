@@ -12,13 +12,13 @@
                 <% end %>
               </div>
             <% end %>
-
-            <div class="form-group">
-              <%= form.text_field :address, class: "form-control" %>
-            </div>
-            <div class="text-center mt-3">
-              <%= form.submit 'Proceed to Checkout', class: "btn btn-primary" %>
-            </div>
+              <%= form.label "Address:" %>
+              <%= form.text_field :address, placeholder: 'Enter address', class: "form-control mt-2 mb-2" %>
+              <%= form.label "Discount:" %>
+              <%= form.text_field :discount_name, placeholder: 'Enter discount code', class: "form-control" %>
+              <div class="text-center">
+                <%= form.submit 'Checkout', class: "btn btn-primary mt-3" %>
+              </div>
           <% end %>
         </div>
       </div>

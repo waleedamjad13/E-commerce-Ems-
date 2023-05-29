@@ -38,12 +38,14 @@
   </div>
   <div class="card mt-4">
     <div class="card-body">
-      <h3 class="card-title">Sub total: <%= @cart.sub_total %></h3>
+      <h3 class="card-title">Sub total: <%= @sub_total  %></h3>
     </div>
   </div>
 </div>
 
+
 <%= render 'checkout/address' %>
+
 
 <% else %>
   <p>Your cart is empty</p>
