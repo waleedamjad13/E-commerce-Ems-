@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   resources :carts, only: [:create, :show, :destroy] do
     resources :order_items, only: [:create, :update, :destroy]
   end
-  
-  resources :address, only: [:new, :create]
+  post '/checkout/apply_discount', to: 'checkout#apply_discount'
 
-  get 'checkout/orders', to: 'checkout#orders'
+  resources :checkout do
+    post 'apply_discount', on: :collection
+  end
 
   post "checkout/create", to: "checkout#create"
 

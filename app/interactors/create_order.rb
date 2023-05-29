@@ -1,7 +1,5 @@
-# app/interactors/create_order.rb
-
 class CreateOrder < ApplicationInteractor
-  delegate :user, :address, :order_items, :order, to: :context
+  delegate :user, :address, :order_items, :order, :discount_name, to: :context
 
   def call
     create_order
@@ -14,10 +12,17 @@ class CreateOrder < ApplicationInteractor
     context.order = Order.new(user: user, address: address)
 
     if order.save
+      associate_discount
       context.success = true
     else
       context.error = order.errors.full_messages.to_sentence
     end
+  end
+
+  def associate_discount
+    discount = Discount.find_by(name: discount_name)
+    order.discount = discount if discount
+    order.save
   end
 
   def associate_order_items

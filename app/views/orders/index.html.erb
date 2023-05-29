@@ -13,7 +13,6 @@
               <th>Product</th>
               <th>Quantity</th>
               <th>Price</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -26,8 +25,7 @@
               </tr>
             <% end %>
             <tr>
-              <td colspan="3" class="text-right"><strong>Subtotal:</strong></td>
-              <td><strong><%= order.sub_total %></strong></td>
+              <td colspan="3" class="text-right"><strong>Total:</strong> <%= order.discounted_total_price %></td>
             </tr>
           </tbody>
         </table>

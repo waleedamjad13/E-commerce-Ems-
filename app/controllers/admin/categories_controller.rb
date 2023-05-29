@@ -4,6 +4,7 @@ module Admin
   # controller for categories that are namespaced inside admin
   #
   class CategoriesController < ApplicationController
+    before_action :authorize_admin
     before_action :set_category
 
     def index
@@ -68,6 +69,10 @@ module Admin
 
     def category_params
       params.require(:category).permit(:name, :active)
+    end
+
+    def authorize_admin
+      authorize [:admin, Category]
     end
   end
 end

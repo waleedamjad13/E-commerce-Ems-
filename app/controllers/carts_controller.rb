@@ -19,8 +19,11 @@ class CartsController < ApplicationController
     @cart = current_user.cart
     @order_items = @cart.order_items if @cart.present?
     @publishable_key = Rails.configuration.stripe[:publishable_key]
-
+    @discounted_price = params[:discounted_price].to_f
+    @sub_total = @cart.present? ? @cart.calculate_sub_total(@discounted_price) : 0
   end
+  
+
 
   private
 
