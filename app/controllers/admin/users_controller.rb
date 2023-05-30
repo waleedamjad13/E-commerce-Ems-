@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'prawn'
-require 'pdf-reader'
-
 module Admin
   # controller for users that are namespaced inside admin
   #

@@ -4,6 +4,8 @@ module Admin
   # controller for categories that are namespaced inside admin
   #
   class CategoriesController < ApplicationController
+    before_action :authenticate_user!
+    before_action :authorize_admin
     before_action :set_category
 
     def index

@@ -9,7 +9,7 @@ class CreateCart < ApplicationInteractor
 
     if cart.save
       create_order_items
-      
+
     else
       error(cart.errors.full_messages.to_sentence)
     end

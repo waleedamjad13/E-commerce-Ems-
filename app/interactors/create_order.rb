@@ -1,5 +1,6 @@
-# app/interactors/create_order.rb
+# frozen_string_literal: true
 
+# interactor for creating order
 class CreateOrder < ApplicationInteractor
   delegate :user, :address, :order_items, :order, to: :context
 

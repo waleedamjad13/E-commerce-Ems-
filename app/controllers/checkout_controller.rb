@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'stripe'
 
+# controller for checkout
 class CheckoutController < ApplicationController
-
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     result = CreateCheckout.call(
       cart: @cart,
       order_items: @order_items,
@@ -11,7 +13,7 @@ class CheckoutController < ApplicationController
       port: request.port,
       address: params[:address]
     )
-  
+
     if result.success?
       @order = result.order
       @session = result.session
@@ -20,9 +22,5 @@ class CheckoutController < ApplicationController
     else
       redirect_to cart_path, alert: result.error
     end
-  end
-
-  def orders
-    @orders = Order.all_orders(current_user)
   end
 end

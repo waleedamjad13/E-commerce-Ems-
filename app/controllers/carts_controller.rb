@@ -2,6 +2,7 @@
 
 # controller for carts
 class CartsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_products, only: [:create]
 
   def create
@@ -19,7 +20,12 @@ class CartsController < ApplicationController
     @cart = current_user.cart
     @order_items = @cart.order_items if @cart.present?
     @publishable_key = Rails.configuration.stripe[:publishable_key]
-
+    @discounted_price = params[:discounted_price].to_f
+    @sub_total = if @cart.present?
+                   @cart.calculate_sub_total(@discounted_price)
+                 else
+                   0
+                 end
   end
 
   private
