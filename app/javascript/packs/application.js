@@ -20,8 +20,7 @@ require("@popperjs/core")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import 'controllers'
-
-import "bootstrap"
 import "../stylesheets/application"
 import $ from 'jquery';
-global.$ = jQuery = $;
+global.$ = global.jQuery = $;
+import 'bootstrap';

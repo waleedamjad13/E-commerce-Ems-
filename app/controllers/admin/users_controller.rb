@@ -39,13 +39,14 @@ module Admin
 
     def destroy
       result = DestroyUser.call(id: params[:id])
-
+    
       if result.success?
         redirect_to admin_users_path, notice: result.notice
       else
         redirect_to admin_users_path, alert: result.error
       end
     end
+    
 
     def export
       result = ExportUsers.call(search_terms: params[:search])

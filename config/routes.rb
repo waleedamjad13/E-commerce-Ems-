@@ -41,7 +41,6 @@ Rails.application.routes.draw do
       collection { get 'export', format: :csv }
       get 'sort/:column(/:direction)', action: :index, on: :collection, as: 'sort_users'
     end
-
   end
 
 
