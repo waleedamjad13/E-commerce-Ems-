@@ -4,8 +4,22 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one: {
+  account: :two
+}
 # column: value
-#
-two: {}
+#]
+two: {
+  account: :two
+}
 # column: value
+
+
+user = User.create(:first)
+# user.update(jksdk)
+
+descript 'vla' do
+
+
+end
+assert_equal 45, user.age(120902309049)
