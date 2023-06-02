@@ -19,7 +19,7 @@ module Admin
     end
 
     def create?
-      user.admin?
+      user&.admin?
     end
 
     def new?

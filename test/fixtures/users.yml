@@ -5,21 +5,12 @@
 # below each fixture, per the syntax in the comments below
 #
 one: {
-  account: :two
+  email: "john@gmail.com",
+  firstname: "John23",
+  lastname: "jonas",
+  admin: true
 }
+
 # column: value
-#]
-two: {
-  account: :two
-}
-# column: value
+#
 
-
-user = User.create(:first)
-# user.update(jksdk)
-
-descript 'vla' do
-
-
-end
-assert_equal 45, user.age(120902309049)

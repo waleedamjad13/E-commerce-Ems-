@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  availability: false
+  active: false
 
 two:
   name: MyString
-  availability: false
+  active: false
